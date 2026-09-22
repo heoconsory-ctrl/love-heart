@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>❤️ Love ❤️</title>
+<title>Yêu Lụa ❤️</title>
 
 <style>
 * {
@@ -16,105 +15,131 @@ html, body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
 body {
     background:
-        radial-gradient(circle at center, #450018 0%, #18000b 45%, #000 100%);
-    font-family: Arial, sans-serif;
+        linear-gradient(
+            rgba(0,0,0,0.35),
+            rgba(35,0,20,0.65)
+        ),
+        url("B612_20260915_211457_991.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* ===== NỀN SAO ===== */
-
-.star {
+/* Lớp ánh sáng */
+.glow {
     position: fixed;
-    width: 2px;
-    height: 2px;
-    background: white;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: twinkle 2s infinite alternate;
+    inset: 0;
+    background: radial-gradient(
+        circle at center,
+        rgba(255,80,150,0.15),
+        transparent 60%
+    );
+    pointer-events: none;
+    z-index: 1;
 }
 
-@keyframes twinkle {
-    from { opacity: 0.2; }
-    to { opacity: 1; }
+/* Pháo hoa */
+canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
 }
 
-/* ===== NỘI DUNG ===== */
-
+/* Nội dung */
 .container {
     position: relative;
     z-index: 10;
     text-align: center;
 }
 
-.heart {
-    font-size: 120px;
-    filter: drop-shadow(0 0 15px #ff003c)
-            drop-shadow(0 0 40px #ff1744);
-    animation: beat 1s infinite;
+/* Ảnh Lụa */
+.wife {
+    width: min(60vw, 240px);
+    height: min(60vw, 240px);
+
+    margin: auto;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    border: 5px solid white;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 25px #ff80ab,
+        0 0 50px #ff1744,
+        0 0 80px rgba(255,23,68,0.7);
+
+    animation: pulse 2.2s infinite ease-in-out;
 }
 
-.text {
-    color: white;
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 15px;
-
-    text-shadow:
-        0 0 5px white,
-        0 0 15px #ff1744,
-        0 0 30px #ff1744,
-        0 0 50px #ff4081;
-
-    animation: glow 2s infinite alternate;
+.wife img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.sub {
-    color: #ffb6c9;
-    font-size: 19px;
-    margin-top: 12px;
-
-    text-shadow:
-        0 0 8px #ff4081,
-        0 0 20px #ff4081;
-}
-
-@keyframes beat {
-    0%, 100% {
+/* Hiệu ứng nhịp */
+@keyframes pulse {
+    0%,100% {
         transform: scale(1);
     }
 
     50% {
-        transform: scale(1.25);
+        transform: scale(1.05);
     }
 }
 
-@keyframes glow {
+/* Chữ */
+.love {
+    margin-top: 25px;
+
+    color: white;
+
+    font-size: clamp(45px, 12vw, 75px);
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 5px white,
+        0 0 15px #ff80ab,
+        0 0 30px #ff1744,
+        0 0 60px #ff1744;
+
+    animation: textGlow 2s infinite alternate;
+}
+
+@keyframes textGlow {
     from {
-        opacity: 0.8;
+        transform: scale(1);
     }
 
     to {
-        opacity: 1;
+        transform: scale(1.05);
     }
 }
 
-/* ===== TIM BAY ===== */
-
-.floating-heart {
+/* Tim bay */
+.heart {
     position: fixed;
     bottom: -50px;
-    pointer-events: none;
     z-index: 5;
+    pointer-events: none;
 
-    animation-name: fly;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
+    animation: fly linear forwards;
 
     filter: drop-shadow(0 0 8px #ff1744);
 }
@@ -124,9 +149,7 @@ body {
         transform:
             translateY(0)
             translateX(0)
-            rotate(0deg)
-            scale(0.7);
-
+            scale(.5);
         opacity: 0;
     }
 
@@ -137,70 +160,40 @@ body {
     50% {
         transform:
             translateY(-50vh)
-            translateX(30px)
-            rotate(15deg)
+            translateX(35px)
             scale(1);
     }
 
     100% {
         transform:
             translateY(-115vh)
-            translateX(-30px)
-            rotate(-15deg)
+            translateX(-35px)
             scale(1.5);
-
         opacity: 0;
     }
-}
-
-/* ===== PHÁO HOA ===== */
-
-canvas {
-    position: fixed;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
 }
 </style>
 </head>
 
 <body>
 
+<div class="glow"></div>
+
 <canvas id="fireworks"></canvas>
 
 <div class="container">
-    <div class="heart">❤️</div>
 
-    <div class="text">
-        Anh yêu em ❤️
+    <div class="wife">
+        <img src="DSC02939.JPG" alt="Lụa">
     </div>
 
-    <div class="sub">
-        Mãi bên nhau nhé! 💕
+    <div class="love">
+        Yêu Lụa ❤️
     </div>
+
 </div>
 
 <script>
-
-/* =========================
-   SAO LUNG LINH
-========================= */
-
-for (let i = 0; i < 80; i++) {
-
-    const star = document.createElement("div");
-
-    star.className = "star";
-
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.top = Math.random() * 100 + "vh";
-
-    star.style.animationDelay =
-        Math.random() * 2 + "s";
-
-    document.body.appendChild(star);
-}
-
 
 /* =========================
    TIM BAY
@@ -208,9 +201,9 @@ for (let i = 0; i < 80; i++) {
 
 function createHeart() {
 
-    const heart = document.createElement("div");
+    const h = document.createElement("div");
 
-    heart.className = "floating-heart";
+    h.className = "heart";
 
     const hearts = [
         "❤️",
@@ -220,25 +213,25 @@ function createHeart() {
         "💓"
     ];
 
-    heart.innerHTML =
+    h.innerHTML =
         hearts[Math.floor(Math.random() * hearts.length)];
 
-    heart.style.left =
+    h.style.left =
         Math.random() * 100 + "vw";
 
-    heart.style.fontSize =
-        (15 + Math.random() * 30) + "px";
+    h.style.fontSize =
+        15 + Math.random() * 30 + "px";
 
     const duration =
         4 + Math.random() * 5;
 
-    heart.style.animationDuration =
+    h.style.animationDuration =
         duration + "s";
 
-    document.body.appendChild(heart);
+    document.body.appendChild(h);
 
     setTimeout(() => {
-        heart.remove();
+        h.remove();
     }, duration * 1000);
 }
 
@@ -255,276 +248,158 @@ const canvas =
 const ctx =
     canvas.getContext("2d");
 
-let width;
-let height;
+let W, H;
 
 function resize() {
-
-    width = canvas.width =
-        window.innerWidth;
-
-    height = canvas.height =
-        window.innerHeight;
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
 }
 
 resize();
 
-window.addEventListener(
-    "resize",
-    resize
-);
-
-
-/* =========================
-   PARTICLES
-========================= */
+window.addEventListener("resize", resize);
 
 let particles = [];
 
-function randomColor() {
-
-    const colors = [
-        "#ff1744",
-        "#ff4081",
-        "#ffea00",
-        "#00e5ff",
-        "#7c4dff",
-        "#ffffff",
-        "#69f0ae"
-    ];
-
-    return colors[
-        Math.floor(
-            Math.random() *
-            colors.length
-        )
-    ];
-}
+const colors = [
+    "#ff1744",
+    "#ff4081",
+    "#ff80ab",
+    "#ffffff",
+    "#ffd740",
+    "#7c4dff",
+    "#40c4ff"
+];
 
 
-/* =========================
-   NỔ PHÁO HOA TRÒN
-========================= */
+/* Nổ pháo hoa */
 
-function createExplosion(
-    x,
-    y,
-    color
-) {
+function explosion(x, y) {
 
-    const count = 90;
+    const color =
+        colors[Math.floor(Math.random() * colors.length)];
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < 90; i++) {
 
         const angle =
-            Math.random() *
-            Math.PI * 2;
+            Math.random() * Math.PI * 2;
 
         const speed =
-            2 +
-            Math.random() * 6;
+            2 + Math.random() * 6;
 
         particles.push({
-
             x: x,
             y: y,
 
-            vx:
-                Math.cos(angle) *
-                speed,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
 
-            vy:
-                Math.sin(angle) *
-                speed,
-
-            life:
-                80 +
-                Math.random() * 30,
-
-            maxLife: 110,
+            life: 70 + Math.random() * 40,
 
             color: color,
 
-            size:
-                1 +
-                Math.random() * 2
-
+            size: 1 + Math.random() * 2
         });
     }
 }
 
 
-/* =========================
-   PHÁO HOA HÌNH TRÁI TIM
-========================= */
+/* Pháo hoa hình trái tim */
 
-function createHeartFirework(
-    x,
-    y
-) {
-
-    const color =
-        Math.random() > 0.5
-        ? "#ff1744"
-        : "#ff4081";
+function heartFirework(x, y) {
 
     for (
         let t = 0;
         t < Math.PI * 2;
-        t += 0.08
+        t += 0.06
     ) {
 
-        const scale = 7;
+        const scale = 8;
 
         const hx =
-            16 *
-            Math.pow(
-                Math.sin(t),
-                3
-            );
+            16 * Math.pow(Math.sin(t), 3);
 
         const hy =
             -(
-                13 *
-                Math.cos(t)
-                -
-                5 *
-                Math.cos(2 * t)
-                -
-                2 *
-                Math.cos(3 * t)
-                -
-                Math.cos(4 * t)
+                13 * Math.cos(t)
+                - 5 * Math.cos(2*t)
+                - 2 * Math.cos(3*t)
+                - Math.cos(4*t)
             );
 
         particles.push({
 
             x: x,
-
             y: y,
 
-            vx:
-                hx / scale +
-                (Math.random() - 0.5) * 0.5,
+            vx: hx / scale,
+            vy: hy / scale,
 
-            vy:
-                hy / scale +
-                (Math.random() - 0.5) * 0.5,
+            life: 120,
 
-            life:
-                100 +
-                Math.random() * 30,
+            color: "#ff4081",
 
-            maxLife: 130,
-
-            color: color,
-
-            size:
-                1.5 +
-                Math.random() * 2
-
+            size: 2
         });
     }
 }
 
 
-/* =========================
-   BẮN PHÁO HOA
-========================= */
+/* Bắn pháo */
 
-function launchFirework() {
+function launch() {
 
     const x =
-        width *
-        (0.15 +
-        Math.random() * 0.7);
+        W * (0.1 + Math.random() * 0.8);
 
-    const targetY =
-        height *
-        (0.15 +
-        Math.random() * 0.4);
+    const target =
+        H * (0.12 + Math.random() * 0.4);
 
-    let y = height;
-
-    const color =
-        randomColor();
+    let y = H;
 
     const speed =
-        8 +
-        Math.random() * 3;
+        7 + Math.random() * 3;
 
-    const rocket =
-        setInterval(() => {
+    const timer = setInterval(() => {
 
-            y -= speed;
+        y -= speed;
 
-            ctx.beginPath();
+        ctx.beginPath();
 
-            ctx.arc(
-                x,
-                y,
-                2.5,
-                0,
-                Math.PI * 2
-            );
+        ctx.arc(x, y, 2.5, 0, Math.PI * 2);
 
-            ctx.fillStyle =
-                color;
+        ctx.fillStyle = "white";
 
-            ctx.shadowBlur = 15;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = "white";
 
-            ctx.shadowColor =
-                color;
+        ctx.fill();
 
-            ctx.fill();
+        if (y <= target) {
 
-            if (y <= targetY) {
+            clearInterval(timer);
 
-                clearInterval(
-                    rocket
-                );
+            ctx.shadowBlur = 0;
 
-                ctx.shadowBlur = 0;
-
-                if (
-                    Math.random() <
-                    0.25
-                ) {
-
-                    createHeartFirework(
-                        x,
-                        y
-                    );
-
-                } else {
-
-                    createExplosion(
-                        x,
-                        y,
-                        color
-                    );
-                }
+            if (Math.random() < 0.35) {
+                heartFirework(x, y);
+            } else {
+                explosion(x, y);
             }
+        }
 
-        }, 20);
+    }, 18);
 }
 
 
-/* =========================
-   ANIMATION
-========================= */
+/* Animation */
 
 function animate() {
 
     ctx.fillStyle =
-        "rgba(0,0,0,0.15)";
+        "rgba(0,0,0,0.18)";
 
-    ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-    );
+    ctx.fillRect(0, 0, W, H);
 
     for (
         let i = particles.length - 1;
@@ -532,24 +407,22 @@ function animate() {
         i--
     ) {
 
-        const p =
-            particles[i];
+        const p = particles[i];
 
         p.x += p.vx;
-
         p.y += p.vy;
 
         p.vy += 0.035;
 
         p.vx *= 0.985;
-
         p.vy *= 0.985;
 
         p.life--;
 
         const alpha =
-            p.life /
-            p.maxLife;
+            Math.max(p.life / 120, 0);
+
+        ctx.globalAlpha = alpha;
 
         ctx.beginPath();
 
@@ -561,49 +434,28 @@ function animate() {
             Math.PI * 2
         );
 
-        ctx.globalAlpha =
-            Math.max(
-                alpha,
-                0
-            );
+        ctx.fillStyle = p.color;
 
-        ctx.fillStyle =
-            p.color;
-
-        ctx.shadowBlur = 15;
-
-        ctx.shadowColor =
-            p.color;
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = p.color;
 
         ctx.fill();
 
-        ctx.globalAlpha = 1;
-
         if (p.life <= 0) {
-
-            particles.splice(
-                i,
-                1
-            );
+            particles.splice(i, 1);
         }
     }
 
+    ctx.globalAlpha = 1;
     ctx.shadowBlur = 0;
 
-    requestAnimationFrame(
-        animate
-    );
+    requestAnimationFrame(animate);
 }
 
 
-/* =========================
-   TẠO PHÁO HOA LIÊN TỤC
-========================= */
+/* Cứ khoảng 0.9 giây có một quả */
 
-setInterval(
-    launchFirework,
-    900
-);
+setInterval(launch, 900);
 
 animate();
 
